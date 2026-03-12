@@ -6,7 +6,7 @@ import clsx from "clsx";
 
 export function App() {
   const [target, setTarget] = useState<[number, number]>();
-  const [itemToShow, setItemToShow] = useState("Mapa");
+  const [itemToShow, setItemToShow] = useState("Bares");
 
   function showInMap(position: number[]) {
     setItemToShow("Mapa");
