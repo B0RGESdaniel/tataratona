@@ -30,7 +30,7 @@ export function Map({ target }: MapControllerProps) {
     <MapContainer
       center={[-22.902109839094475, -43.10685698806076]}
       zoom={14}
-      className="w-full h-[650px]"
+      className="w-full h-162.5"
       scrollWheelZoom={false}
     >
       <MapController target={target} />
