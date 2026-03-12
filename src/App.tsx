@@ -1,49 +1,17 @@
 import { useState } from "react";
 import { Map } from "./Map";
 import { pubs } from "./pubs";
-import { Map as MapIcon } from "lucide-react";
+import { ExternalLink, MapPin } from "lucide-react";
 import clsx from "clsx";
-
-interface PubItemProps {
-  pubInfo: Pub;
-  setToCenter?: () => void;
-}
-
-type Pub = {
-  id: number;
-  name: string;
-  position: number[];
-  region: string;
-  linkMaps: string;
-};
-
-function PubItem({ pubInfo, setToCenter }: PubItemProps) {
-  return (
-    <div
-      className="w-full flex items-center gap-4 border-b border-amber-600 p-3 drop-shadow-lg"
-      onClick={setToCenter}
-    >
-      <span className="font-bold text-lg text-[#6B4226] text-right">
-        #{pubInfo.id}
-      </span>
-      <div className="flex w-full items-center justify-between">
-        <h2 className="font-semibold text-lg text-[#6B4226]">{pubInfo.name}</h2>
-        <a
-          className="bg-[#F26522] text-gray-100 px-2 py-2 w-24 rounded-md flex items-center justify-center gap-2"
-          href={pubInfo.linkMaps}
-          target="_blank"
-        >
-          <MapIcon size={18} />
-          Maps
-        </a>
-      </div>
-    </div>
-  );
-}
 
 export function App() {
   const [target, setTarget] = useState<[number, number]>();
   const [itemToShow, setItemToShow] = useState("Mapa");
+
+  function showInMap(position: number[]) {
+    setItemToShow("Mapa");
+    setTarget([position[0], position[1]]);
+  }
 
   return (
     <div
@@ -102,14 +70,40 @@ export function App() {
         )}
         {itemToShow === "Bares" && (
           <div>
-            <div className="px-4 flex flex-col gap-4">
-              {pubs.map((pub) => (
-                <PubItem
-                  pubInfo={pub}
-                  setToCenter={() =>
-                    setTarget([pub.position[0], pub.position[1]])
-                  }
-                />
+            <div className="px-4 flex flex-col gap-4 pb-4">
+              {pubs.map((pub, index) => (
+                <div className="w-full flex items-center gap-4 border-b border-amber-600 p-3 drop-shadow-lg last:border-none">
+                  <span className="font-bold text-lg text-[#6B4226] text-right">
+                    #{index + 1}
+                  </span>
+                  <div className="flex flex-col w-full items-start gap-2">
+                    <h2 className="font-semibold text-lg text-[#6B4226]">
+                      {pub.name}{" "}
+                      {index === 0 && (
+                        <span className="text-sm font-normal text-[#C22026]">
+                          🚩Largada
+                        </span>
+                      )}
+                    </h2>
+                    <div className="inline-flex w-full gap-2">
+                      <button
+                        className="text-[#F26522] border-2 border-[#F26522] text-nowrap px-2 py-2 rounded-md flex items-center justify-center gap-2"
+                        onClick={() => showInMap(pub.position)}
+                      >
+                        <MapPin size={18} />
+                        Mostrar no mapa
+                      </button>
+                      <a
+                        className="bg-[#F26522] text-gray-100 text-nowrap px-2 py-2 rounded-md flex items-center justify-center gap-2"
+                        href={pub.linkMaps}
+                        target="_blank"
+                      >
+                        Maps
+                        <ExternalLink size={18} />
+                      </a>
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
           </div>

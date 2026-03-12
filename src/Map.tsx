@@ -12,7 +12,7 @@ function MapController({ target }: MapControllerProps) {
   const map = useMap();
 
   if (target) {
-    map.flyTo(target, 16, { duration: 0.8 });
+    map.flyTo(target, 18, { duration: 0.8 });
   }
 
   return null;
@@ -29,7 +29,7 @@ export function Map({ target }: MapControllerProps) {
   return (
     <MapContainer
       center={[-22.902109839094475, -43.10685698806076]}
-      zoom={15}
+      zoom={14}
       className="w-full h-[650px]"
       scrollWheelZoom={false}
     >
@@ -39,14 +39,14 @@ export function Map({ target }: MapControllerProps) {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         // url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
       />
-      {pubs.map((pub) => (
+      {pubs.map((pub, index) => (
         <Marker
-          key={pub.id}
+          key={index}
           position={[pub.position[0], pub.position[1]]}
           title={pub.name}
           icon={customIcon}
         >
-          <Popup>{pub.name}</Popup>
+          <Popup>{`#${index + 1} - ${pub.name}`}</Popup>
         </Marker>
       ))}
     </MapContainer>
