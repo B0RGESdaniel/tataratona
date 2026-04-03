@@ -1,73 +1,29 @@
-# React + TypeScript + Vite
+# 🏃‍♀️🎂 TATARATONA 🍺🏃‍♀️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+App feito para o aniversário de 24 anos da Tata — uma baratona pelos bares de Niterói, com **24 anos = 24 bares**.
 
-Currently, two official plugins are available:
+O evento rolou em **28/03 às 14h**, passando por bares em Icaraí e Região Oceânica.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## O que é
 
-## React Compiler
+Uma página web simples que serve de guia para a galera durante a baratona. Ela mostra:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Lista de bares** em ordem de visita, numerados de #1 a #24, com o primeiro marcado como largada
+- **Mapa interativo** com todos os bares marcados com ícones de caneca de cerveja
+- Botão para abrir cada bar direto no Google Maps
+- Botão para focar o bar no mapa interno da página
 
-## Expanding the ESLint configuration
+## Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- [React](https://react.dev/) + TypeScript
+- [Vite](https://vite.dev/)
+- [Tailwind CSS v4](https://tailwindcss.com/)
+- [React Leaflet](https://react-leaflet.js.org/) com tiles do OpenStreetMap
+- [Lucide React](https://lucide.dev/) para ícones
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Como rodar
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
